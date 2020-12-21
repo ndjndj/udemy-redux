@@ -1,33 +1,35 @@
-import React, { Component } from 'react';
-
-// class App extends Component {
-//   render() {
-//     return (
-//       <React.Fragment>
-//         <h1>Hello, world!</h1>
-//         <p>Welcome to React.</p>
-//       </React.Fragment>
-//       
-//     );
-//   }
-// }
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const App = () => {
+  const profiles = [
+    { name: "Taro", age: 10 },
+    { name: "Hanako", age: 5 },
+    { name: "Kenta", age: 18 },
+    { name: "NoName" , age: 5},
+    { name: "NoName", age: 3 }
+  ];
+
   return (
     <div>
-      <Cat />
-      <Cat />
-      <Cat />
-      <Cat />
-      <Cat />
+      {
+        profiles.map((profile, index) => {
+          return <User name={profile.name} age={profile.age} key={index} />
+        })
+      }
     </div>
   );
 }
 
-const Cat = () => {
+const User = (props) => {
   return (
-    <div>CAT</div>
+    <div>Hi, I am {props.name}, and {props.age} years old!</div>
   );
+}
+
+User.propTypes = {
+  name: PropTypes.string,
+  age: PropTypes.number.isRequired
 }
 
 export default App;
